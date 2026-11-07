@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#101513">
+<title>AFTER HOURS — City Run</title><link rel="icon" href="data:,">
+<style>
+:root{color-scheme:dark;--ink:#f3f5e9;--muted:#a0aa9f;--lime:#d8ff52;--panel:rgba(13,20,17,.88)}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#101513;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}canvas{position:absolute;inset:0;width:100%;height:100%;display:block}.grain{position:absolute;inset:0;pointer-events:none;opacity:.10;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");mix-blend-mode:screen}.hud{position:absolute;inset:0;pointer-events:none}.topline{position:absolute;left:28px;top:24px;display:flex;align-items:center;gap:12px;font-size:11px;font-weight:800;letter-spacing:.18em;color:#e8eddb}.brandmark{width:28px;height:28px;display:grid;place-items:center;background:var(--lime);color:#172017;font-size:16px;clip-path:polygon(0 0,100% 0,100% 72%,72% 100%,0 100%)}.brand small{display:block;color:#9da99c;font-size:9px;letter-spacing:.22em;margin-top:3px}.mission{position:absolute;left:28px;top:84px;width:272px;padding:17px 18px 16px;background:var(--panel);border:1px solid #344139;border-left:3px solid var(--lime);box-shadow:0 12px 35px #0005}.eyebrow{font-size:9px;font-weight:900;letter-spacing:.2em;color:var(--lime);text-transform:uppercase}.mission h2{font-size:17px;letter-spacing:.01em;margin:8px 0 5px}.mission p{font-size:11px;line-height:1.55;color:#aab4a8;margin:0}.progress{display:flex;gap:5px;margin-top:14px}.pip{height:4px;flex:1;background:#39443b}.pip.on{background:var(--lime);box-shadow:0 0 8px #d8ff5288}.righttop{position:absolute;right:26px;top:24px;display:flex;gap:10px;align-items:flex-start}.stat{min-width:108px;padding:11px 14px;background:var(--panel);border:1px solid #344139}.statlabel{font-size:8px;letter-spacing:.17em;color:#8f9b90;font-weight:900}.statvalue{font-size:18px;font-weight:900;letter-spacing:.02em;margin-top:4px}.wanted{color:var(--lime);letter-spacing:3px;font-size:16px}.mapbox{position:absolute;right:26px;top:105px;width:154px;height:154px;padding:5px;background:#101713d9;border:1px solid #465148;box-shadow:0 10px 24px #0006}.mapbox canvas{position:relative;width:100%;height:100%}.bottomleft{position:absolute;bottom:25px;left:28px;display:flex;gap:8px;align-items:center}.key{border:1px solid #546055;background:#111a16;padding:7px 9px;color:#e9eddf;font:800 9px ui-monospace,monospace;min-width:25px;text-align:center}.hint{font-size:10px;color:#c0c8bb;letter-spacing:.08em}.speedbox{position:absolute;right:28px;bottom:25px;text-align:right}.speed{font-size:34px;font-weight:900;line-height:1;letter-spacing:-.06em}.speed span{font-size:9px;letter-spacing:.16em;color:#a4afa4;margin-left:4px}.vehicle{font-size:9px;letter-spacing:.16em;color:var(--lime);margin-top:5px;font-weight:900}.toast{position:absolute;left:50%;top:32%;transform:translate(-50%,-50%);padding:11px 19px;background:#101713e8;border:1px solid #75815c;color:var(--lime);font-weight:900;font-size:11px;letter-spacing:.18em;opacity:0;transition:opacity .25s}.toast.show{opacity:1}.overlay{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(90deg,#0b100de8,#0b100d99 55%,#0b100d55),linear-gradient(0deg,#0b100d88,transparent 65%);pointer-events:auto;transition:opacity .35s}.overlay.hidden{opacity:0;pointer-events:none}.card{width:min(490px,calc(100vw - 36px));padding:36px 38px;background:#111a16eF;border:1px solid #425046;box-shadow:0 24px 80px #0009;position:relative}.card:before{content:"";position:absolute;top:-1px;left:-1px;width:65px;height:4px;background:var(--lime)}.card .eyebrow{font-size:10px}.card h1{font-size:clamp(35px,8vw,60px);line-height:.91;letter-spacing:-.065em;margin:14px 0 16px}.card h1 em{font-style:normal;color:var(--lime)}.card p{max-width:370px;color:#aeb8ac;font-size:13px;line-height:1.65}.missionline{padding:12px 0;border-top:1px solid #344139;border-bottom:1px solid #344139;margin:19px 0;color:#e7ecdF;font-size:11px;line-height:1.65}.missionline strong{color:var(--lime)}button{border:0;background:var(--lime);color:#192116;padding:13px 20px;font-weight:1000;font-size:10px;letter-spacing:.16em;cursor:pointer}button:hover{background:#e8ff91}.footnote{font-size:9px;color:#829083;margin-top:13px;letter-spacing:.08em}.mobile{display:none;pointer-events:auto;position:absolute;inset:auto 0 12px 0;height:145px}.pad{position:absolute;left:18px;bottom:0;display:grid;grid-template-columns:repeat(3,43px);grid-template-rows:repeat(2,43px);gap:4px}.touchbtn{display:grid;place-items:center;background:#18231ccc;border:1px solid #71806e88;color:#f1f3e8;border-radius:8px;font-size:15px;font-weight:900;touch-action:none;user-select:none}.touchbtn.blank{visibility:hidden}.touchright{position:absolute;right:18px;bottom:4px;display:flex;gap:8px;align-items:end}.touchright .touchbtn{width:55px;height:55px;font-size:9px;letter-spacing:.08em}.touchright .big{width:66px;height:66px;background:#d8ff52dd;color:#192116}.hidden-ui{display:none!important}@media(max-width:700px){.topline{left:14px;top:14px}.mission{left:14px;top:58px;width:min(234px,61vw);padding:12px}.mission h2{font-size:14px}.mission p{font-size:10px}.righttop{right:12px;top:14px;gap:5px}.stat{min-width:72px;padding:8px}.statvalue{font-size:14px}.mapbox{right:12px;top:78px;width:112px;height:112px}.bottomleft{display:none}.speedbox{right:15px;bottom:165px}.speed{font-size:27px}.mobile{display:block}.card{padding:29px 25px}.grain{opacity:.07}}
+</style>
+</head>
+<body><canvas id="game"></canvas><div class="grain"></div>
+<div class="hud" id="hud">
+<div class="topline"><div class="brandmark">A</div><div class="brand">AFTER HOURS<small>VESPUCCI DISTRICT · 02:17 AM</small></div></div>
+<section class="mission"><div class="eyebrow">Night shift / job 01</div><h2 id="missionTitle">Loose ends</h2><p id="missionText">Pick up the cash. Get it to the safehouse.</p><div class="progress" id="progress"></div></section>
+<div class="righttop"><div class="stat"><div class="statlabel">TAKE</div><div class="statvalue" id="cash">$0</div></div><div class="stat"><div class="statlabel">HEAT</div><div class="statvalue wanted" id="wanted">☆☆☆☆☆</div></div></div>
+<div class="mapbox"><canvas id="map"></canvas></div>
+<div class="bottomleft"><span class="key">WASD</span><span class="hint">MOVE / DRIVE</span><span class="key">E</span><span class="hint">ENTER</span><span class="key">SHIFT</span><span class="hint">NITRO</span></div>
+<div class="speedbox" id="speedbox"><div class="speed" id="speed">000<span>MPH</span></div><div class="vehicle" id="vehicle">ON FOOT</div></div>
+<div class="toast" id="toast">CASH SECURED</div></div>
+<div class="overlay" id="overlay"><div class="card"><div class="eyebrow">A small city, a long night</div><h1>AFTER<br><em>HOURS.</em></h1><p>One last run through the city. Scoop the drops, stay ahead of the sirens, and make it back in one piece.</p><div class="missionline"><strong>THE JOB</strong> &nbsp; Collect 5 cash drops <strong>→</strong> reach the green safehouse.<br><strong>THE RULE</strong> &nbsp; Cops get faster the longer you stay on the street.</div><button id="start">START THE RUN&nbsp; ↗</button><div class="footnote">WASD / ARROWS MOVE · E ENTER / EXIT · SHIFT BOOST · SPACE HANDBRAKE</div></div></div>
+<div class="mobile" id="mobile"><div class="pad"><div class="touchbtn blank"></div><div class="touchbtn" data-key="up">▲</div><div class="touchbtn blank"></div><div class="touchbtn" data-key="left">◀</div><div class="touchbtn" data-key="down">▼</div><div class="touchbtn" data-key="right">▶</div></div><div class="touchright"><div class="touchbtn" data-key="e">ENTER</div><div class="touchbtn" data-key="space">BRAKE</div><div class="touchbtn big" data-key="shift">BOOST</div></div></div>
+<script>
+(()=>{'use strict';
+const canvas=document.querySelector('#game'),ctx=canvas.getContext('2d'),mapCanvas=document.querySelector('#map'),mctx=mapCanvas.getContext('2d');
+let W=0,H=0,dpr=1,last=0,run=false,won=false,lost=false,toastTimer=0;
+const TILE=420,ROAD=112,GRID=7,WORLD=TILE*GRID;
+const cam={x:0,y:0};
+const keys={};
+const down=(k)=>!!keys[k];
+let player={x:TILE*3+ROAD/2,y:TILE*3+ROAD/2,a:-Math.PI/2,v:0,car:-1,health:100};
+let cash=0,wanted=0,heatTimer=0,escapeTimer=0;
+const colors=['#d56448','#498a9d','#d5a846','#78875f','#a27caa','#d9ded0','#cf6d82'];
+const cars=[],cops=[],drops=[];
+const rand=(n)=>{let x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)};
+function resize(){dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);mapCanvas.width=mapCanvas.height=288;}
+addEventListener('resize',resize);resize();
+function roadPoint(col,row,vertical=true){return vertical?{x:col*TILE+ROAD/2,y:row*TILE+ROAD/2}:{x:col*TILE+ROAD/2,y:row*TILE+ROAD/2};}
+// Deliberately seeded city traffic and cash drops keep every run readable.
+for(let r=0;r<GRID;r++)for(let c=0;c<GRID;c++){
+ if((c===3&&r===3)||rand(c*11+r*19)>.38){let x=c*TILE+ROAD/2+(c===3&&r===3?31:(rand(c*7+r*3)>.5?31:-31)),y=c===3&&r===3?3*TILE+ROAD/2+42:r*TILE+ROAD+55+rand(c*13+r*5)*230;
+ cars.push({x,y,a:Math.PI/2,color:colors[Math.floor(rand(c*5+r*23)*colors.length)],speed:0,parked:true,police:false});}
+}
+const dropCoords=[[1,1],[5,1],[1,5],[5,5],[3,0]];
+for(let i=0;i<dropCoords.length;i++){let [c,r]=dropCoords[i];drops.push({x:c*TILE+ROAD/2,y:r*TILE+ROAD/2,got:false});}
+const safe={x:3*TILE+ROAD/2,y:6*TILE+ROAD/2};
+function startGame(){run=true;document.querySelector('#overlay').classList.add('hidden');last=performance.now();requestAnimationFrame(frame)}
+document.querySelector('#start').addEventListener('click',startGame);
+addEventListener('keydown',e=>{let k=e.key.toLowerCase();keys[k]=true;if([' ','arrowup','arrowdown','arrowleft','arrowright'].includes(k))e.preventDefault();if(k==='e'&&run)toggleCar();if(k==='r'&&(won||lost))location.reload()});
+addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
+document.querySelectorAll('.touchbtn[data-key]').forEach(el=>{let k=el.dataset.key;const keymap={up:'w',down:'s',left:'a',right:'d',e:'e',space:' ',shift:'shift'};el.addEventListener('pointerdown',e=>{e.preventDefault();keys[keymap[k]]=true;el.setPointerCapture(e.pointerId);if(k==='e'&&run)toggleCar()});for(const ev of ['pointerup','pointercancel','lostpointercapture'])el.addEventListener(ev,()=>keys[keymap[k]]=false)});
+function toggleCar(){if(player.car>=0){let car=cars[player.car];player.x=car.x+Math.cos(car.a+Math.PI/2)*34;player.y=car.y+Math.sin(car.a+Math.PI/2)*34;player.a=car.a;car.speed=0;player.car=-1;return}
+ let near=-1,best=58;cars.forEach((c,i)=>{let d=Math.hypot(c.x-player.x,c.y-player.y);if(d<best){best=d;near=i}});if(near>=0){player.car=near;cars[near].parked=false}}
+function roadAt(x,y){let rx=((x%TILE)+TILE)%TILE,ry=((y%TILE)+TILE)%TILE;return rx<ROAD||ry<ROAD}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+function showToast(text){const t=document.querySelector('#toast');t.textContent=text;t.classList.add('show');toastTimer=2.1}
+function nearestDrop(){let best=null,dist=Infinity;for(const d of drops)if(!d.got){let n=Math.hypot(d.x-player.x,d.y-player.y);if(n<dist){dist=n;best=d}}return{drop:best,dist}}
+function collect(){let n=nearestDrop();if(n.drop&&n.dist<(player.car>=0?58:32)){n.drop.got=true;cash+=500;wanted=Math.min(5,wanted+1);heatTimer=0;showToast('+$500  ·  HEAT INCREASED');if(cash===2500){showToast('ALL DROPS SECURED — FIND THE SAFEHOUSE')}}if(cash>=2500&&Math.hypot(player.x-safe.x,player.y-safe.y)<65&&!won){won=true;endGame('win')}}
+function endGame(type){run=false;let overlay=document.querySelector('#overlay'),card=overlay.querySelector('.card');overlay.classList.remove('hidden');card.innerHTML=type==='win'?'<div class="eyebrow">Run complete · Vespucci is quiet again</div><h1>ALL<br><em>CLEAR.</em></h1><p>You made the drop and lost the tail. $2,500 in the bag. Not bad for a night shift.</p><button onclick="location.reload()">RUN IT BACK&nbsp; ↗</button><div class="footnote">PRESS R TO PLAY AGAIN</div>':'<div class="eyebrow">Run over · The city caught up</div><h1>TOO<br><em>SLOW.</em></h1><p>The sirens got there first. The city will still be here tomorrow.</p><button onclick="location.reload()">TRY AGAIN&nbsp; ↗</button><div class="footnote">PRESS R TO PLAY AGAIN</div>'}
+const buildings=[];
+for(let r=0;r<GRID;r++)for(let c=0;c<GRID;c++){
+ let bx=c*TILE+ROAD+16,by=r*TILE+ROAD+16,bw=TILE-ROAD-32,bh=TILE-ROAD-32;
+ const colorsB=['#37463c','#414a3e','#4c463b','#3e4a47','#514b42','#394841'];
+ buildings.push({x:bx,y:by,w:bw,h:bh,c:colorsB[Math.floor(rand(c*31+r*8)*colorsB.length)],roof:['#65705d','#777363','#69756a','#756d5e'][Math.floor(rand(c*19+r*23)*4)],seed:c*27+r*11});
+}
+function rounded(x,y,w,h,r,fill){ctx.fillStyle=fill;ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fill()}
+function drawWorld(){
+ ctx.fillStyle='#19241d';ctx.fillRect(0,0,W,H);
+ let left=Math.floor(cam.x/TILE)-1,right=Math.ceil((cam.x+W)/TILE)+1,top=Math.floor(cam.y/TILE)-1,bottom=Math.ceil((cam.y+H)/TILE)+1;
+ ctx.save();ctx.translate(-cam.x,-cam.y);
+ // block lawns, sidewalks, asphalt grids
+ for(let r=top;r<=bottom;r++)for(let c=left;c<=right;c++){
+  let x=c*TILE,y=r*TILE;ctx.fillStyle='#222e25';ctx.fillRect(x,y,TILE,TILE);
+  ctx.fillStyle='#8c8d77';ctx.fillRect(x+ROAD,y+ROAD,TILE-ROAD,TILE-ROAD);
+  ctx.fillStyle='#313936';ctx.fillRect(x,y,ROAD,TILE);ctx.fillRect(x,y,TILE,ROAD);
+  ctx.fillStyle='#d3cba4';ctx.globalAlpha=.22;ctx.fillRect(x+ROAD-7,y+ROAD,TILE-ROAD,3);ctx.fillRect(x+ROAD,y+ROAD-7,3,TILE-ROAD);ctx.globalAlpha=1;
+  // dashed lane lines and crosswalks
+  ctx.strokeStyle='#c9c19a';ctx.globalAlpha=.36;ctx.lineWidth=2;ctx.setLineDash([17,17]);ctx.beginPath();ctx.moveTo(x+ROAD/2,y+ROAD);ctx.lineTo(x+ROAD/2,y+TILE);ctx.moveTo(x+ROAD,y+ROAD/2);ctx.lineTo(x+TILE,y+ROAD/2);ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1;
+  for(let i=0;i<5;i++){ctx.fillStyle='#d5d0bb';ctx.globalAlpha=.32;ctx.fillRect(x+ROAD+8+i*12,y+ROAD-14,6,9);ctx.fillRect(x+ROAD-14,y+ROAD+8+i*12,9,6);ctx.globalAlpha=1}
+  // tiny curbside trees
+  for(let i=0;i<3;i++){let tx=x+ROAD+32+i*86,ty=y+ROAD+24+((c+r+i)%2)*155;if(tx<cam.x-30||tx>cam.x+W+30||ty<cam.y-30||ty>cam.y+H+30)continue;
+   ctx.fillStyle='#101812';ctx.beginPath();ctx.ellipse(tx+3,ty+5,13,9,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#516a4d';ctx.beginPath();ctx.arc(tx,ty,11,0,Math.PI*2);ctx.fill();ctx.fillStyle='#82905e';ctx.beginPath();ctx.arc(tx-3,ty-3,5,0,Math.PI*2);ctx.fill();}
+ }
+ for(const b of buildings){if(b.x+b.w<cam.x-30||b.x>cam.x+W+30||b.y+b.h<cam.y-30||b.y>cam.y+H+30)continue;
+  ctx.fillStyle='#111913';ctx.fillRect(b.x+7,b.y+11,b.w,b.h);rounded(b.x,b.y,b.w,b.h,7,b.c);
+  // flat rooftop and parapet
+  rounded(b.x+8,b.y+8,b.w-16,b.h-16,4,b.roof);
+  ctx.fillStyle='#a0a080';ctx.globalAlpha=.28;ctx.fillRect(b.x+10,b.y+10,b.w-20,2);ctx.globalAlpha=1;
+  const n=2+Math.floor(rand(b.seed)*3);for(let i=0;i<n;i++){let rw=30+rand(b.seed+i*3)*47,rh=22+rand(b.seed+i*8)*36,rx=b.x+20+rand(b.seed+i*13)*(b.w-rw-40),ry=b.y+20+rand(b.seed+i*5)*(b.h-rh-40);ctx.fillStyle='#606957';ctx.fillRect(rx,ry,rw,rh);ctx.fillStyle='#9e9a7a';ctx.globalAlpha=.35;ctx.fillRect(rx+4,ry+4,rw-8,3);ctx.globalAlpha=1;}
+  // warm windows on edges
+  for(let i=0;i<5;i++){ctx.fillStyle=rand(b.seed+i*17)>.48?'#e7c77a':'#50605a';ctx.globalAlpha=.75;ctx.fillRect(b.x+20+i*37,b.y+4,9,3);ctx.fillRect(b.x+20+i*37,b.y+b.h-7,9,3);ctx.globalAlpha=1;}
+ }
+ // safehouse beacon and exit zone
+ ctx.save();ctx.translate(safe.x,safe.y);let pulse=(Math.sin(performance.now()/260)+1)/2;ctx.strokeStyle='#d8ff52';ctx.globalAlpha=.4+pulse*.5;ctx.lineWidth=3;ctx.beginPath();ctx.arc(0,0,27+pulse*8,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=1;rounded(-22,-18,44,36,4,'#a4cf42');ctx.fillStyle='#26321e';ctx.fillRect(-14,-9,28,27);ctx.fillStyle='#dfff73';ctx.beginPath();ctx.moveTo(-26,-8);ctx.lineTo(0,-25);ctx.lineTo(26,-8);ctx.closePath();ctx.fill();ctx.fillStyle='#f9ffe4';ctx.font='bold 8px ui-monospace';ctx.textAlign='center';ctx.fillText('SAFE',0,4);ctx.restore();
+ // drops beacon
+ drops.forEach((d,i)=>{if(d.got)return;let p=(performance.now()/360+i*1.7)%Math.PI*2,rad=12+Math.sin(p)*3;ctx.save();ctx.translate(d.x,d.y);ctx.globalAlpha=.18;ctx.fillStyle='#d8ff52';ctx.beginPath();ctx.arc(0,0,34,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;ctx.fillStyle='#d8ff52';ctx.beginPath();ctx.arc(0,0,rad,0,Math.PI*2);ctx.fill();ctx.fillStyle='#29351b';ctx.font='bold 13px ui-monospace';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('$',0,1);ctx.strokeStyle='#d8ff52';ctx.globalAlpha=.45;ctx.beginPath();ctx.arc(0,0,24+Math.sin(p)*4,0,Math.PI*2);ctx.stroke();ctx.restore()});
+ // vehicle traffic (decorative cars move slowly along their street)
+ cars.forEach((car,i)=>drawCar(car,i===player.car));
+ cops.forEach((c,i)=>drawCar(c,false));
+ // player on foot
+ if(player.car<0){ctx.save();ctx.translate(player.x,player.y);ctx.rotate(player.a);ctx.fillStyle='#070b09';ctx.beginPath();ctx.ellipse(2,7,9,6,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#e7e8d8';ctx.beginPath();ctx.arc(0,0,8,0,Math.PI*2);ctx.fill();ctx.fillStyle='#d8ff52';ctx.fillRect(2,-3,8,6);ctx.fillStyle='#202722';ctx.beginPath();ctx.arc(0,-2,4,0,Math.PI*2);ctx.fill();ctx.restore()}
+ ctx.restore();
+}
+function drawCar(car,isPlayer){ctx.save();ctx.translate(car.x,car.y);ctx.rotate(car.a);ctx.fillStyle='#070b09';ctx.beginPath();ctx.ellipse(1,8,21,11,0,0,Math.PI*2);ctx.fill();ctx.fillStyle=car.police?'#dce4dc':car.color;rounded(-21,-10,42,20,5,ctx.fillStyle);ctx.fillStyle=car.police?'#1f3339':'#202b29';rounded(-7,-8,17,16,4,ctx.fillStyle);ctx.fillStyle='#9ab4ae';ctx.globalAlpha=.72;ctx.fillRect(-5,-7,7,14);ctx.fillRect(4,-7,4,14);ctx.globalAlpha=1;ctx.fillStyle='#f8eab9';ctx.fillRect(17,-7,3,4);ctx.fillRect(17,3,3,4);ctx.fillStyle='#bb4f4a';ctx.fillRect(-20,-7,3,4);ctx.fillRect(-20,3,3,4);if(car.police){ctx.fillStyle='#df4f48';ctx.fillRect(-3,-10,7,3);ctx.fillStyle='#4ab9de';ctx.fillRect(4,-10,6,3);if(Math.sin(performance.now()/90)>0)ctx.globalAlpha=.25,ctx.fillStyle='#ee5750',ctx.beginPath(),ctx.arc(0,0,28,0,Math.PI*2),ctx.fill()}if(isPlayer){ctx.strokeStyle='#d8ff52';ctx.lineWidth=1.5;ctx.strokeRect(-24,-13,48,26)}ctx.restore()}
+function tick(dt){
+ // player movement
+ if(player.car>=0){let c=cars[player.car],acc=(down('w')||down('arrowup')?1:0)-(down('s')||down('arrowdown')?1:0);let steer=(down('d')||down('arrowright')?1:0)-(down('a')||down('arrowleft')?1:0);let boost=down('shift')?1.55:1;
+  c.speed+=acc*310*boost*dt;c.speed*=Math.pow(down(' ')?0.91:0.984,dt*60);c.speed=clamp(c.speed,-130,down('shift')?340:235);c.a+=steer*dt*(c.speed>=0?1:-1)*Math.min(2.4,Math.abs(c.speed)/85);
+  let nx=c.x+Math.cos(c.a)*c.speed*dt,ny=c.y+Math.sin(c.a)*c.speed*dt;
+  if(roadAt(nx,ny)){c.x=nx;c.y=ny}else{c.speed*=-.23;player.health-=Math.abs(c.speed)*.006}
+  player.x=c.x;player.y=c.y;player.a=c.a;
+ }else{
+  let dx=(down('d')||down('arrowright')?1:0)-(down('a')||down('arrowleft')?1:0),dy=(down('s')||down('arrowdown')?1:0)-(down('w')||down('arrowup')?1:0);if(dx||dy){let len=Math.hypot(dx,dy);dx/=len;dy/=len;player.a=Math.atan2(dy,dx);let speed=down('shift')?210:145,nx=player.x+dx*speed*dt,ny=player.y+dy*speed*dt;if(roadAt(nx,player.y))player.x=nx;if(roadAt(player.x,ny))player.y=ny;}
+ }
+ // Wanted response. Patrol units converge on your last position.
+ if(wanted>0){heatTimer+=dt;let count=Math.min(wanted,3);while(cops.length<count){let angle=Math.random()*Math.PI*2;let d=player.car>=0?cars[player.car]:player;cops.push({x:clamp(d.x+Math.cos(angle)*360,70,WORLD-70),y:clamp(d.y+Math.sin(angle)*360,70,WORLD-70),a:0,speed:0,color:'#e6e9dc',parked:false,police:true})}
+  for(const cop of cops){let target=player.car>=0?cars[player.car]:player,ang=Math.atan2(target.y-cop.y,target.x-cop.x),dist=Math.hypot(target.x-cop.x,target.y-cop.y);let turn=Math.atan2(Math.sin(ang-cop.a),Math.cos(ang-cop.a));cop.a+=clamp(turn,-2.4*dt,2.4*dt);cop.speed+=(dist>42?1:-.4)*230*dt;cop.speed=clamp(cop.speed,0,105+wanted*24);let nx=cop.x+Math.cos(cop.a)*cop.speed*dt,ny=cop.y+Math.sin(cop.a)*cop.speed*dt;if(roadAt(nx,ny)){cop.x=nx;cop.y=ny}else{cop.a+=Math.PI/2;cop.speed*=.5}if(dist<32){player.health-=dt*(player.car>=0?5:14);if(player.car>=0)cars[player.car].speed*=.98}}
+  if(heatTimer>20&&Math.hypot(player.x-cops[0].x,player.y-cops[0].y)>480){wanted=Math.max(0,wanted-1);heatTimer=0;if(!wanted)cops.length=0;showToast('HEAT COOLED')}
+ }else cops.length=0;
+ if(player.health<=0&&!lost){lost=true;endGame('lose')}
+ collect();cam.x=clamp(player.x-W/2,0,WORLD-W);cam.y=clamp(player.y-H/2,0,WORLD-H);if(W>WORLD)cam.x=(WORLD-W)/2;if(H>WORLD)cam.y=(WORLD-H)/2;
+ if(toastTimer>0){toastTimer-=dt;if(toastTimer<=0)document.querySelector('#toast').classList.remove('show')}
+ updateHud();
+}
+function updateHud(){const n=nearestDrop();let progress=document.querySelector('#progress');progress.innerHTML='';for(let i=0;i<5;i++){let p=document.createElement('i');p.className='pip'+(i<cash/500?' on':'');progress.appendChild(p)}document.querySelector('#cash').textContent='$'+cash.toLocaleString();document.querySelector('#wanted').textContent='★'.repeat(wanted)+'☆'.repeat(5-wanted);document.querySelector('#missionTitle').textContent=cash>=2500?'Make the getaway':'Loose ends';document.querySelector('#missionText').textContent=cash>=2500?'Reach the green safehouse and get off the street.':n.drop?`Collect the marked cash drops. ${cash/500} of 5 secured.`:'All drops secured — find the safehouse.';let speed=player.car>=0?Math.round(Math.abs(cars[player.car].speed)*.19):0;document.querySelector('#speed').innerHTML=String(speed).padStart(3,'0')+'<span>MPH</span>';document.querySelector('#vehicle').textContent=player.car>=0?'SENTINEL XS':'ON FOOT'}
+function drawMap(){let s=mapCanvas.width;mctx.clearRect(0,0,s,s);mctx.fillStyle='#1b281f';mctx.fillRect(0,0,s,s);let scale=s/WORLD;mctx.fillStyle='#667064';for(let i=0;i<=GRID;i++){mctx.fillRect(i*TILE*scale,0,ROAD*scale,s);mctx.fillRect(0,i*TILE*scale,s,ROAD*scale)}mctx.fillStyle='#485647';for(const b of buildings)mctx.fillRect(b.x*scale,b.y*scale,b.w*scale,b.h*scale);for(const d of drops)if(!d.got){mctx.fillStyle='#d8ff52';mctx.beginPath();mctx.arc(d.x*scale,d.y*scale,3,0,7);mctx.fill()}mctx.fillStyle='#a4cf42';mctx.fillRect(safe.x*scale-3,safe.y*scale-3,6,6);for(const c of cops){mctx.fillStyle='#ed5b51';mctx.fillRect(c.x*scale-2,c.y*scale-2,4,4)}mctx.fillStyle='#f4f4e4';mctx.beginPath();mctx.arc(player.x*scale,player.y*scale,4,0,7);mctx.fill();mctx.strokeStyle='#d8ff52';mctx.lineWidth=1;mctx.stroke()}
+function frame(now){if(!run)return;let dt=Math.min((now-last)/1000,.04);last=now;tick(dt);ctx.clearRect(0,0,W,H);drawWorld();drawMap();requestAnimationFrame(frame)}
+updateHud();drawWorld();drawMap();
+})();
+</script></body></html>
